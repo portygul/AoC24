@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Puzzle Inputs
+Input.txt
+Sample.txt
