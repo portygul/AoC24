@@ -13,16 +13,17 @@ async function calcSortedDifferences()
         const split = elem.split('   ');
         left.push(parseFloat(split[0]));
         right.push(parseFloat(split[1]));
-
-        left.sort();
-        right.sort();
-
     });
+
+    left.sort();
+    right.sort();
+
     for(let i = 0; i < left.length; i++)
     {
         delta += Math.abs(left[i] - right[i]);
     }
-    console.log("difference: " + delta)
+    
+    console.log("difference: " + delta);
     return delta;
 }  
 
