@@ -68,6 +68,7 @@ function countDirectionalXmasMatches(line: string, row: number, deltaX: number, 
 
     const matches = [...line.matchAll(/X/g)];
     const matchIndices = matches.map((elem) => elem.index)
+    const XMAS = ['X', 'M', 'A', 'S'];
     let matchCount = 0;
 
     if(matchIndices.length === 0)
@@ -81,19 +82,17 @@ function countDirectionalXmasMatches(line: string, row: number, deltaX: number, 
         {
             continue;
         }
-        if(sample[row+deltaY]?.charAt(matchIndex+deltaX) !== 'M')
-        {
-            continue;
+
+        let letterCount = 1;
+        for(let j = 1; j < XMAS.length; j++)
+        { 
+            if(sample[row+j*deltaY]?.charAt(matchIndex+j*deltaX) !== XMAS[j])
+            {
+                break;
+            }
+            letterCount++;
         }
-        if(sample[row+(2*deltaY)]?.charAt(matchIndex+(2*deltaX)) !== 'A')
-        {
-            continue;
-        }
-        if(sample[row+(3*deltaY)]?.charAt(matchIndex+(3*deltaX)) !== 'S')
-        {
-            continue;
-        }
-        matchCount++;
+        matchCount += (letterCount === 4) ? 1 : 0;
     };
     return matchCount;
 }
